@@ -1,4 +1,7 @@
 ---
+<p align="center">
+  <img width="800" height="200" src="https://user-images.githubusercontent.com/87285710/144499665-72d31400-997a-459e-931b-ebd8d4107038.png"
+</p>
 
 <h3 align="center">Enhanced-Bot</h3>
 <p align="center">An advanced and multi-functional Discord bot written in Python.</p>
