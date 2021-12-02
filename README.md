@@ -12,7 +12,7 @@
 - Easy to set up 👌
 - Plays music from YouTube 🎶
 - Slash Commands support 🤖
-- Embedded Command output 🌌
+- Embedded Commands output 🌌
 - Simple usage 😎
 
 ### Commands
