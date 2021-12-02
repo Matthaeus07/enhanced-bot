@@ -61,7 +61,7 @@ Here are all the available commands in the bot!
 
 ### Local
   
-- Install all the dependencies from the https://github.com/Matthaeus07/my-enhanced-bot/blob/main/requirements.txt file.
+- Install all the dependencies from the [requirements.txt](https://github.com/Matthaeus07/my-enhanced-bot/blob/main/requirements.txt) file.
   - eg.: `pip install youtube_dl`
 - Copy the content from .env.example into a new .env file (name it just that (no extension!)).
   - `TOKEN` is the bots token.
