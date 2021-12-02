@@ -61,9 +61,9 @@ Here are all the available commands in the bot!
 
 ### Local
   
-- Install all the dependencies from the [requirements.txt](https://github.com/Matthaeus07/my-enhanced-bot/blob/main/requirements.txt) file.
+- Install all the dependencies from the [requirements.txt](https://github.com/Matthaeus07/enhanced-bot/blob/main/requirements.txt) file.
   - eg.: `pip install youtube_dl`
-- Copy the content from [.env.example] into a new .env file (name it just that (no extension!)).
+- Copy the content from [.env.example](https://github.com/Matthaeus07/enhanced-bot/blob/main/.env.example) into a new .env file (name it just that (no extension!)).
   - `TOKEN` is the bots token.
   - `GUILDS` is/are the guild/s you want the bot to be in. (If there are more then two just sepperate them with a comma.)
-- Download the Enhanced-Bot.py file and run it.  **Done!**
+- [Download](https://raw.githubusercontent.com/Matthaeus07/enhanced-bot/main/Enhanced-Bot.py) the [Enhanced-Bot.py](https://github.com/Matthaeus07/enhanced-bot/blob/main/Enhanced-Bot.py) file and run it.  **Done!**
