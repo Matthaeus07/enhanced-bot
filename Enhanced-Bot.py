@@ -82,7 +82,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
 bot = commands.Bot(command_prefix=commands.when_mentioned_or("."), intents=discord.Intents.all())
 bot.remove_command("help")
 guilds = [int(os.getenv("GUILDS"))]
-version = "Version 1.9.5 - The Slash Extension"
+version = "Version 2.0 - The Release"
 
 
 
