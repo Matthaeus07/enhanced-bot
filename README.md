@@ -20,7 +20,7 @@
 
 ### Commands
 
-Here are all the available commands in the bot!
+Here are all the available commands you can use!
 
 | **Commands**      | **Description**                | **Usage**                         |
 |     :---:         |     :---:                      |     :---:                         |
