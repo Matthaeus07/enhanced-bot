@@ -1,6 +1,6 @@
 ---
 <p align="center">
-  <img width="800" height="200" src="https://user-images.githubusercontent.com/87285710/144499665-72d31400-997a-459e-931b-ebd8d4107038.png"
+  <img width="800" height="200" src="https://user-images.githubusercontent.com/87285710/146656887-24fda23e-0ff0-42e6-901a-ab2c18c2b4be.png"
 </p>
 
 <h3 align="center">Enhanced-Bot</h3>
