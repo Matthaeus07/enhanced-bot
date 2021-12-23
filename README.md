@@ -65,7 +65,7 @@ Here are all the available commands you can use!
 ### Local
   
 - Install all the dependencies from the [requirements.txt](https://github.com/Matthaeus07/enhanced-bot/blob/main/requirements.txt) file.
-  - type `pip install -r requirements.txt` in the Windows Terminal (you have to be in the same folder as requirements.txt).
+  - type `pip install -r requirements.txt` in the Windows Terminal. (You have to be in the same folder as requirements.txt).
 - Copy the content from [.env.example](https://github.com/Matthaeus07/enhanced-bot/blob/main/.env.example) into a new .env file (name it just that (no extension!)) and fill it.
   - `TOKEN` is the bots token.
   - `GUILDS` is/are the id/s of the guild/s you want the bot to be in. (If there are more than two just sepperate them with a comma.)
