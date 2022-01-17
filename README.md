@@ -36,7 +36,7 @@ Here are all the available commands you can use!
 | color             | Displays a hex color as a png  | /color ^hex color code^           |
 | id                | Displays your or the bot's id  | /id ^myid / botid^                |
 | getid             | Displays the id of a user      | /getid ^mention user^             |
-| stop              | Plays music from Youtube       | /play ^youtube url / video  name^ |
+| github            | Info about the bot's GitHub.   | /github                           |
 | version           | Get info about the version     | /version                          |
 | ***Fun***         | ---                            | ---
 | roll              | Rolls a dice                   | /roll ^dice^d^sides^              |
