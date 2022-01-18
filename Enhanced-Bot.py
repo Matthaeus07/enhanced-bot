@@ -93,7 +93,7 @@ version = "Version 2.0 - The Release"
 @bot.user_command(name="1) Help", guild_ids = guilds)
 async def help_app(ctx, user):
     help_em = Embed(title="Help", description="Use '/help <options> <choice>' to get more information.", color=Colour.blue())
-    help_em.add_field(name="Music:", value="> join, play, stream, stop, volume")
+    help_em.add_field(name="Music:", value="> join, play, dplay, stop, volume")
     help_em.add_field(name="Fastreplies:", value="> hello, ping, color, id, myid, getid, github, version")
     help_em.add_field(name="Fun:", value="> roll, roulette, mimic, 8ball, vbucks")
     help_em.add_field(name="Maths:", value="> add, sub, mult, div, pow, root, pi")
@@ -133,7 +133,25 @@ class Music(commands.Cog):
 
     @bot.slash_command(guild_ids = guilds)
     async def play(ctx, *, title: Option(str, "URL or title of the song:", required = True)):
-        """Plays music from Youtube.com. The Download could take some time on larger files."""
+        """Streams from Youtube.com."""
+
+        send=Embed(description=f'Search started. Please wait!', color=Colour.blurple())
+        await ctx.respond(embed = send)
+
+        try:
+            async with ctx.typing():
+                player = await YTDLSource.from_url(title, loop=bot.loop, stream=True)
+                ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+        except:
+            error = Embed(title="Error", description="Couldn't get video data. - *HTTP Error 403: Forbidden*", color=Colour.brand_red())
+            await ctx.respond(embed=error)
+
+        send = Embed(description=f'Now streaming: *{player.title}*', color=Colour.blurple())
+        await ctx.send(embed = send)
+
+    @bot.slash_command(guild_ids = guilds)
+    async def dplay(ctx, *, title: Option(str, "URL or title of the song:", required = True)):
+        """Downloads and plays music from youtube.com in high quality."""
 
         send=Embed(description=f'Search and Download started. Please wait!', color=Colour.blurple())
         await ctx.respond(embed = send)
@@ -147,24 +165,6 @@ class Music(commands.Cog):
             await ctx.respond(embed=error)
 
         send=Embed(description=f'Now playing:\n*{player.title}*', color=Colour.blurple())
-        await ctx.send(embed = send)
-
-    @bot.slash_command(guild_ids = guilds)
-    async def stream(ctx, *, title: Option(str, "URL or title of the song:", required = True)):
-        """Streams from Youtube.com (same as ".play", but doesn't predownload)."""
-
-        send=Embed(description=f'Search started. Please wait!', color=Colour.blurple())
-        await ctx.respond(embed = send)
-
-        try:
-            async with ctx.typing():
-                player = await YTDLSource.from_url(title, loop=bot.loop, stream=True)
-                ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
-        except:
-            error = Embed(title="Error", description="Couldn't download video data. - *HTTP Error 403: Forbidden*", color=Colour.brand_red())
-            await ctx.respond(embed=error)
-
-        send = Embed(description=f'Now streaming: *{player.title}*', color=Colour.blurple())
         await ctx.send(embed = send)
 
     @bot.slash_command(guild_ids = guilds)
@@ -188,7 +188,7 @@ class Music(commands.Cog):
         await ctx.voice_client.disconnect()
 
     @play.before_invoke
-    @stream.before_invoke
+    @dplay.before_invoke
     async def ensure_voice(ctx):
         if ctx.voice_client is None:
             if ctx.author.voice:
@@ -586,7 +586,7 @@ class Help(commands.Cog):
 
         if music == None and fastreplies == None and fun == None and maths == None and convert == None:
             help_em = Embed(title="Help", description="Use '/help <options> <choice>' to get more information.", color=Colour.blue())
-            help_em.add_field(name="Music:", value="> join, play, stream, stop, volume")
+            help_em.add_field(name="Music:", value="> join, play, dplay, stop, volume")
             help_em.add_field(name="Fastreplies:", value="> hello, ping, color, id, myid, getid, github, version")
             help_em.add_field(name="Fun:", value="> roll, roulette, mimic, 8ball, vbucks")
             help_em.add_field(name="Maths:", value="> add, sub, mult, div, pow, root, pi")
@@ -598,8 +598,8 @@ class Help(commands.Cog):
         if music == "● Music":
             help_em = Embed(title="Music", description="Use these commands to control the music part of the bot.", color=Colour.blue())
             help_em.add_field(name="join", value="> Joins a voice channel.")
-            help_em.add_field(name="play", value="> Plays music from youtube.com.")
-            help_em.add_field(name="stream", value="> Streams music from youtube.com.")
+            help_em.add_field(name="play", value="> Streams music from youtube.com.")
+            help_em.add_field(name="dplay", value="> Downloads and plays music from youtube.com.")
             help_em.add_field(name="stop", value="> Disconnects the bot from voice.")
             help_em.add_field(name="volume", value="> Changes the player's volume (strd: 50%).")
             await ctx.respond(embed = help_em)
@@ -611,9 +611,9 @@ class Help(commands.Cog):
             help_em = Embed(title="Play", description="Joins and plays music that got downloaded in the author's voice channel from youtube.com.", color=Colour.blue())
             help_em.add_field(name="Usage:", value="`/play <youtube url / video  name>`")
             await ctx.respond(embed = help_em)
-        if music == "▸ stream":
-            help_em = Embed(title="Stream", description="Joins and streams music in the author's voice channel from youtube.com.", color=Colour.blue())
-            help_em.add_field(name="Usage:", value="`/stream <youtube url / video  name>`")
+        if music == "▸ dplay":
+            help_em = Embed(title="D-Play", description="Downloads and plays music from youtube.com in high quality. The Download could take some time.", color=Colour.blue())
+            help_em.add_field(name="Usage:", value="`/dplay <youtube url / video  name>`")
             await ctx.repond(embed = help_em)
         if music == "▸ stop":
             help_em = Embed(title="Stop", description="Stops playing and disconnects from voice channel.", color=Colour.blue())
