@@ -8,7 +8,7 @@ import discord
 from discord import Embed
 from discord.ext import commands
 from discord.colour import Colour
-from discord.commands.commands import Option
+from discord.commands import Option
 
 import youtube_dl
 
@@ -17,7 +17,8 @@ import math
 from math import pi
 
 import logging
-logging.basicConfig(level=logging.INFO)
+if True == False:
+  logging.basicConfig(level=logging.INFO)
 
 import socket
 
@@ -88,9 +89,30 @@ version = "Version 2.0 - The Release"
 
 
 
-@bot.user_command(name="Say Hello", guild_ids = guilds)
-async def hi(ctx, user):
-    await ctx.respond(f"{ctx.author.mention} says hello to {user.name}!")
+
+@bot.user_command(name="1) Help", guild_ids = guilds)
+async def help_app(ctx, user):
+    help_em = Embed(title="Help", description="Use '/help <options> <choice>' to get more information.", color=Colour.blue())
+    help_em.add_field(name="Music:", value="> join, play, stream, stop, volume")
+    help_em.add_field(name="Fastreplies:", value="> hello, ping, color, id, myid, getid, github, version")
+    help_em.add_field(name="Fun:", value="> roll, roulette, mimic, 8ball, vbucks")
+    help_em.add_field(name="Maths:", value="> add, sub, mult, div, pow, root, pi")
+    help_em.add_field(name="Convert:", value="> cm_inch, km_miles, kmh_mph, mps_kmh, c_f, l_gal")
+    help_em.add_field(name="᲼᲼", value="᲼᲼", inline=False)
+    help_em.add_field(name="If you want to have a look at the bot's code or set it up yourself, check out it's GitHub:" ,value="https://github.com/Matthaeus07/enhanced-bot", inline=False)
+    await ctx.respond(embed = help_em)
+
+@bot.user_command(name="2) Say Hello", guild_ids = guilds)
+async def hi_app(ctx, user):
+    send = Embed(description=f"{ctx.author.mention} says hello to {user.name}!", color=Colour.blurple())
+    await ctx.respond(embed = send)
+
+@bot.user_command(name="3) GitHub", guild_ids = guilds)
+async def github_app(ctx, user):
+    send = Embed(description=f"If you want to have a look at the bot's code or set it up yourself, check out it's GitHub:\nhttps://github.com/Matthaeus07/enhanced-bot", color=Colour.blurple())
+    send.set_thumbnail(url="https://cdn-icons-png.flaticon.com/512/25/25231.png")
+    await ctx.respond(embed = send)
+
 
 
 
@@ -111,25 +133,39 @@ class Music(commands.Cog):
 
     @bot.slash_command(guild_ids = guilds)
     async def play(ctx, *, title: Option(str, "URL or title of the song:", required = True)):
-        """Plays music from Youtube.com."""
+        """Plays music from Youtube.com. The Download could take some time on larger files."""
 
-        async with ctx.typing():
-            player = await YTDLSource.from_url(title, loop=bot.loop)
-            ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
-
-        send=Embed(description=f'Now downloading and playing: *{player.title}*', color=Colour.blurple())
+        send=Embed(description=f'Search and Download started. Please wait!', color=Colour.blurple())
         await ctx.respond(embed = send)
+
+        try:
+            async with ctx.typing():
+                player = await YTDLSource.from_url(title, loop=bot.loop)
+                ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+        except:
+            error = Embed(title="Error", description="Couldn't download video data. - *HTTP Error 403: Forbidden*", color=Colour.brand_red())
+            await ctx.respond(embed=error)
+
+        send=Embed(description=f'Now playing:\n*{player.title}*', color=Colour.blurple())
+        await ctx.send(embed = send)
 
     @bot.slash_command(guild_ids = guilds)
     async def stream(ctx, *, title: Option(str, "URL or title of the song:", required = True)):
         """Streams from Youtube.com (same as ".play", but doesn't predownload)."""
 
-        async with ctx.typing():
-            player = await YTDLSource.from_url(title, loop=bot.loop, stream=True)
-            ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+        send=Embed(description=f'Search started. Please wait!', color=Colour.blurple())
+        await ctx.respond(embed = send)
+
+        try:
+            async with ctx.typing():
+                player = await YTDLSource.from_url(title, loop=bot.loop, stream=True)
+                ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+        except:
+            error = Embed(title="Error", description="Couldn't download video data. - *HTTP Error 403: Forbidden*", color=Colour.brand_red())
+            await ctx.respond(embed=error)
 
         send = Embed(description=f'Now streaming: *{player.title}*', color=Colour.blurple())
-        await ctx.respond(embed = send)
+        await ctx.send(embed = send)
 
     @bot.slash_command(guild_ids = guilds)
     async def volume(ctx, volume: Option(int, "The volume for the player:", required = True)):
@@ -237,6 +273,13 @@ class FastReplies(commands.Cog):
         else:
             error = Embed(title="Error", description="You have to mention a user!", color=Colour.brand_red())
             await ctx.respond(embed = error)
+
+    @bot.slash_command(guild_ids = guilds)
+    async def github(ctx):
+        """Displays info about the bot's GitHub."""
+        send = Embed(description=f"If you want to have a look at the bot's code or set it up yourself, check out it's GitHub:\nhttps://github.com/Matthaeus07/enhanced-bot", color=Colour.blurple())
+        send.set_thumbnail(url="https://cdn-icons-png.flaticon.com/512/25/25231.png")
+        await ctx.respond(embed = send)
 
 
 class Maths(commands.Cog):
@@ -544,10 +587,12 @@ class Help(commands.Cog):
         if music == None and fastreplies == None and fun == None and maths == None and convert == None:
             help_em = Embed(title="Help", description="Use '/help <options> <choice>' to get more information.", color=Colour.blue())
             help_em.add_field(name="Music:", value="> join, play, stream, stop, volume")
-            help_em.add_field(name="Fastreplies:", value="> hello, ping, color, id, myid, getid, version")
-            help_em.add_field(name="Fun:", value="> roll, rRoulette, mimic, 8ball, vbucks")
+            help_em.add_field(name="Fastreplies:", value="> hello, ping, color, id, myid, getid, github, version")
+            help_em.add_field(name="Fun:", value="> roll, roulette, mimic, 8ball, vbucks")
             help_em.add_field(name="Maths:", value="> add, sub, mult, div, pow, root, pi")
             help_em.add_field(name="Convert:", value="> cm_inch, km_miles, kmh_mph, mps_kmh, c_f, l_gal")
+            help_em.add_field(name="᲼᲼", value="᲼᲼", inline=False)
+            help_em.add_field(name="If you want to have a look at the bot's code or set it up yourself, check out it's GitHub:" ,value="https://github.com/Matthaeus07/enhanced-bot", inline=False)
             await ctx.respond(embed = help_em)
 
         if music == "● Music":
@@ -586,6 +631,7 @@ class Help(commands.Cog):
             help_em.add_field(name="color", value="> Diplays the entered hexadecimal color code.")
             help_em.add_field(name="id", value="> Displays your or the bot's id.")
             help_em.add_field(name="getid", value="> Displays user id of the mentioned user.")
+            help_em.add_field(name="github", value="> Displays info about the bot's GitHub.")
             help_em.add_field(name="version", value="> Displays version info.")
             await ctx.respond(embed = help_em)
         if fastreplies == "▸ hello":
@@ -607,6 +653,10 @@ class Help(commands.Cog):
         if fastreplies == "▸ getid":
             help_em = Embed(title="GetId", description="Displays the id of the mentioned user.", color=Colour.blue())
             help_em.add_field(name="Usage:", value="`/getid <mention user>`")
+            await ctx.respond(embed = help_em)
+        if fastreplies == "▸ github":
+            help_em = Embed(title="Github", description="Displays info about the bot's GitHub.", color=Colour.blue())
+            help_em.add_field(name="Usage:", value="`/github`")
             await ctx.respond(embed = help_em)
         if fastreplies == "▸ version":
             help_em = Embed(title="Version", description="Displays info about the bot's current version.", color=Colour.blue())
@@ -717,7 +767,19 @@ class Help(commands.Cog):
             await ctx.respond(embed = help_em)
 
 
-
+print("                                                                                  ")
+print("  $$$$$$$$\           $$\                                                     $$\ ")
+print("  $$  _____|          $$ |                                                    $$ |")
+print("  $$ |      $$$$$$$\  $$$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$\   $$$$$$$ |")
+print("  $$$$$\    $$  __$$\ $$  __$$\  \____$$\ $$  __$$\ $$  _____|$$  __$$\ $$  __$$ |")
+print("  $$  __|   $$ |  $$ |$$ |  $$ | $$$$$$$ |$$ |  $$ |$$ /      $$$$$$$$ |$$ /  $$ |")
+print("  $$ |      $$ |  $$ |$$ |  $$ |$$  __$$ |$$ |  $$ |$$ |      $$   ____|$$ |  $$ |")
+print("  $$$$$$$$\ $$ |  $$ |$$ |  $$ |\$$$$$$$ |$$ |  $$ |\$$$$$$$\ \$$$$$$$\ \$$$$$$$ |")
+print("  \________|\__|  \__|\__|  \__| \_______|\__|  \__| \_______| \_______| \_______|")
+print("                                                                                  ")
+print("  Github: https://github.com/Matthaeus07/enhanced-bot                          ")
+print("                                                                                  ")
+print("                                                                                  ")
 
 @bot.event
 async def on_ready():
