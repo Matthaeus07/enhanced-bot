@@ -142,12 +142,12 @@ class Music(commands.Cog):
             async with ctx.typing():
                 player = await YTDLSource.from_url(title, loop=bot.loop, stream=True)
                 ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+            
+            send = Embed(description=f'Now streaming: *{player.title}*', color=Colour.blurple())
+            await ctx.send(embed = send)
         except:
             error = Embed(title="Error", description="Couldn't get video data. - *HTTP Error 403: Forbidden*", color=Colour.brand_red())
             await ctx.respond(embed=error)
-
-        send = Embed(description=f'Now streaming: *{player.title}*', color=Colour.blurple())
-        await ctx.send(embed = send)
 
     @bot.slash_command(guild_ids = guilds)
     async def dplay(ctx, *, title: Option(str, "URL or title of the song:", required = True)):
@@ -160,12 +160,13 @@ class Music(commands.Cog):
             async with ctx.typing():
                 player = await YTDLSource.from_url(title, loop=bot.loop)
                 ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+
+            send=Embed(description=f'Now playing:\n*{player.title}*', color=Colour.blurple())
+            await ctx.send(embed = send)
         except:
             error = Embed(title="Error", description="Couldn't download video data. - *HTTP Error 403: Forbidden*", color=Colour.brand_red())
             await ctx.respond(embed=error)
 
-        send=Embed(description=f'Now playing:\n*{player.title}*', color=Colour.blurple())
-        await ctx.send(embed = send)
 
     @bot.slash_command(guild_ids = guilds)
     async def volume(ctx, volume: Option(int, "The volume for the player:", required = True)):
