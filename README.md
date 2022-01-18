@@ -64,6 +64,8 @@ Here are all the available commands you can use!
 
 ### Local
   
+- Make sure you have Python 3.8 or higher installed and have added it to PATH during the installation process!
+  - Otherwise install/repair Python with the installer from [here](https://www.python.org/downloads/)
 - Install all the dependencies from the [requirements.txt](https://github.com/Matthaeus07/enhanced-bot/blob/main/requirements.txt) file.
   - Type `pip install -r requirements.txt` in the Windows Terminal. (You have to be in the same folder as requirements.txt).
 - Next download and install FFMPEG from [here](https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n5.0-latest-win64-lgpl-5.0.zip)
