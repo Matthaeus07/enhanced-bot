@@ -26,8 +26,8 @@ Here are all the available commands you can use!
 |     :---:         |     :---:                      |     :---:                         |
 | ***Music***       | ---                            | ---
 | join              | Joins a voice channel          | /join ^voice cannel^              |
-| play              | Plays music from Youtube       | /play ^youtube url / video  name^ |
-| stream            | Streams music from Youtube     | /stream ^youtube url / video  name^ |
+| play              | Streams music from Youtube     | /play ^youtube url / video  name^ |
+| dplay             | Downloads and plays music from Youtube | /dplay ^youtube url / video  name^ |
 | stop              | Disconnects from voice channel | /stop                             |
 | volume            | Changes the volume of the bot  | /volume ^percentage of volume^    |
 | ***Fast Replies***| ---                            | ---
