@@ -73,5 +73,5 @@ Here are all the available commands you can use!
   - If you need additional help, follow [this tutorial](https://www.youtube.com/watch?v=r1AtmY-RMyQ&t=246s).
 - Copy the content from [.env.example](https://github.com/Matthaeus07/enhanced-bot/blob/main/.env.example) into a new .env file (name it just that (no extension!)) and fill it.
   - `TOKEN` is the bots token.
-  - `GUILDS` is/are the id/s of the guild/s you want the bot to be in. (If there are more than two just sepperate them with a comma.)
+  - `GUILDS` is/are the id/s of the guild/s you want the bot to be in. (If there are more than one, just sepperate them with a comma.)
 - [Download](https://github.com/Matthaeus07/enhanced-bot/releases/download/Enhanced-Bot.py/Enhanced-Bot.py) the [Enhanced-Bot.py](https://github.com/Matthaeus07/enhanced-bot/blob/main/Enhanced-Bot.py) file and run it.  **Done!**
