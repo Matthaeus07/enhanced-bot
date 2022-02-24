@@ -70,7 +70,7 @@ Here are all the available commands you can use!
   - Type `pip install -r requirements.txt` in the Windows Terminal. (You have to be in the same folder as requirements.txt).
 - Next download and install FFMPEG from [here](https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n5.0-latest-win64-lgpl-5.0.zip)
   - Don't forget to add the folder, in which you saved the files, to your PATH!
-  - If you need additional help, check [this tutorial](https://www.youtube.com/watch?v=r1AtmY-RMyQ&t=246s).
+  - If you need additional help, follow [this tutorial](https://www.youtube.com/watch?v=r1AtmY-RMyQ&t=246s).
 - Copy the content from [.env.example](https://github.com/Matthaeus07/enhanced-bot/blob/main/.env.example) into a new .env file (name it just that (no extension!)) and fill it.
   - `TOKEN` is the bots token.
   - `GUILDS` is/are the id/s of the guild/s you want the bot to be in. (If there are more than two just sepperate them with a comma.)
