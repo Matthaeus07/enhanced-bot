@@ -62,8 +62,15 @@ Here are all the available commands you can use!
   
 # Installation
 
-### Local
-  
+## Local
+
+### Method 1 - Enhanced-Downloader
+
+- Download the *Enhanced-Downloader* from [here](https://github.com/Matthaeus07/enhanced-bot/releases/tag/Enhanced-Downloader).
+  - It will assist you during the download and installation of the **Enhanced-Bot**.
+
+### Method 2 - Manual installation
+
 - Make sure you have Python 3.8 or higher installed and have added it to PATH during the installation process!
   - Otherwise install/repair Python with the installer from [here](https://www.python.org/downloads/)
 - Install all the dependencies from the [requirements.txt](https://github.com/Matthaeus07/enhanced-bot/blob/main/requirements.txt) file.
