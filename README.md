@@ -70,7 +70,7 @@ Here are all the available commands you can use!
   - It will assist you during the download and installation of the **Enhanced-Bot**.
   
 - If you want support for voice (eg. to hear music) follow these steps:  
-  - download and install FFMPEG from [here](https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n5.0-latest-win64-lgpl-5.0.zip)
+  - Download and install FFMPEG from [here](https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n5.0-latest-win64-lgpl-5.0.zip)
   - Don't forget to add the folder, in which you saved the files, to your PATH!
   - If you need additional help, follow [this tutorial](https://www.youtube.com/watch?v=r1AtmY-RMyQ&t=246s).
 
