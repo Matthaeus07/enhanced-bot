@@ -1,4 +1,4 @@
-py-cord==2.0.0b4
+py-cord==2.0.0rc1
 PyNaCl
 youtube_dl
 python-dotenv
