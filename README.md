@@ -34,6 +34,7 @@ Here are all the available commands you can use!
 | hello             | Greets the user                | /hello ^(optional) name^          |
 | ping              | Checks the bot's latency       | /ping                             |
 | color             | Displays a hex color as a png  | /color ^hex color code^           |
+| publish           | Publishes an embeded message   | /publish ^heading^ ^message^ ^(4 optional...)^|
 | id                | Displays your or the bot's id  | /id ^myid / botid^                |
 | getid             | Displays the id of a user      | /getid ^mention user^             |
 | github            | Info about the bot's GitHub.   | /github                           |
@@ -44,6 +45,8 @@ Here are all the available commands you can use!
 | mimic             | Mimics everything you say      | /mimic ^something^                |
 | 8ball             | Play 8ball with the bot        | /8ball ^question^                 |
 | vbucks            | Do you want VBucks?            | /vbucks                           |
+| ***Admin***       | ---                            | ---
+| clear             | Deletes given amount of messages. | /clear ^amount of messages^    |
 | ***Maths***       | ---                            | ---
 | add               | Adds two numbers               | /add ^number 1^ ^number 2^        |
 | sub               | Subtracts two numbers          | /sub ^number 1^ ^number 2^        |
